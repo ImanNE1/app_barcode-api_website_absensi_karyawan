@@ -1,7 +1,5 @@
-// lib/main.dart
-
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart'; // <-- PERUBAHAN: Import Google Fonts
+import 'package:google_fonts/google_fonts.dart'; 
 import 'package:qr_flutter/qr_flutter.dart';
 import 'api_service.dart';
 import 'barcode_model.dart';
@@ -15,27 +13,22 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // PERUBAHAN: Mendefinisikan tema utama aplikasi di sini
     final baseTheme = ThemeData.light(useMaterial3: true);
 
     return MaterialApp(
       title: 'Data Barcode',
-      debugShowCheckedModeBanner: false, // Menghilangkan banner "DEBUG"
+      debugShowCheckedModeBanner: false,
       theme: baseTheme.copyWith(
-        // PERUBAHAN: Skema warna baru yang lebih elegan
         colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color(0xFF003C5A), // Warna biru navy sebagai dasar
+          seedColor: const Color(0xFF003C5A),
         ),
-        // PERUBAHAN: Menggunakan font 'Poppins' untuk semua teks
         textTheme: GoogleFonts.poppinsTextTheme(baseTheme.textTheme),
-        // PERUBAHAN: Tema khusus untuk AppBar
         appBarTheme: const AppBarTheme(
-          backgroundColor: Color(0xFF003C5A), // Warna AppBar
-          foregroundColor: Colors.white, // Warna teks di AppBar (putih)
+          backgroundColor: Color(0xFF003C5A), 
+          foregroundColor: Colors.white, 
           elevation: 2,
           centerTitle: true,
         ),
-        // PERUBAHAN: Tema khusus untuk Card
         cardTheme: CardThemeData(
           elevation: 2,
           shape: RoundedRectangleBorder(
@@ -65,7 +58,6 @@ class _BarcodeListPageState extends State<BarcodeListPage> {
     futureBarcodes = apiService.fetchBarcodes();
   }
 
-  // Fungsi untuk menampilkan dialog (tidak berubah)
   void _showQrDialog(BuildContext context, Barcode barcode) {
     showDialog(
       context: context,
@@ -113,7 +105,6 @@ class _BarcodeListPageState extends State<BarcodeListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Daftar Barcode Lokasi')),
-      // PERUBAHAN UTAMA: Menambahkan RefreshIndicator
       body: RefreshIndicator(
         onRefresh: _reloadData, // Memanggil fungsi untuk memuat ulang data
         child: FutureBuilder<List<Barcode>>(
@@ -159,7 +150,6 @@ class _BarcodeListPageState extends State<BarcodeListPage> {
                         style: const TextStyle(fontWeight: FontWeight.w600),
                       ),
                       subtitle: Column(
-                        // crossAxisAlignment.start membuat teks rata kiri
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text("Value: ${barcode.value}"),
@@ -181,9 +171,7 @@ class _BarcodeListPageState extends State<BarcodeListPage> {
                 },
               );
             }
-            // Jika tidak ada data
             else {
-              // Menambahkan pesan ini di tengah layar agar lebih rapi
               return const Center(child: Text('Tidak ada data barcode.'));
             }
           },
