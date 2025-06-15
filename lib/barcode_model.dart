@@ -1,5 +1,3 @@
-// lib/barcode_model.dart
-
 import 'dart:convert';
 
 // Fungsi untuk mengubah JSON string menjadi List<Barcode>
